@@ -5,6 +5,10 @@ updater = Updater(token='5631753023:AAHqOqbCtyZsxSQ_QNqNv985E343Oox50bs', use_co
 dispatcher = updater.dispatcher
 
 def func1():
+    '''
+        花色排序控制
+        分成4種花色，每個花色各1~13
+    '''
     global flower3, flower4, new_dict
     club, spade, dimond, heart = [], [], [], []
 
@@ -33,9 +37,22 @@ def func1():
     return flower3, flower4
 
 def func2():
+    '''
+       顯示初始介面
+       ♣(0):
+       ♦(1):
+       ❤(2):
+       ♠(3):
+       🂠(4):
+        .
+        .
+       (9) : ********* 
+       (10): **********
+       (11): ***********
+    '''
     global li0, li1, li2, li3, li4, li5, li6, li7, li8, li9, li10, li11, li12, li13, flower3, flower4, new_dict, \
         li0_rep, li1_rep, li2_rep, li3_rep, li4_rep, li5_rep, li6_rep, li7_rep, li8_rep, li9_rep, li10_rep, li11_rep
-    # 印出初始排
+    
     li0, li1, li2, li3, li4, li5, li6, li7, li8, li9, li10, li11, li12, li13 = [], [], [], [], [], [], [], [], [], [], \
                                                                                [], [], [], []
     li0_rep, li1_rep, li2_rep, li3_rep, li4_rep, li5_rep, li6_rep, li7_rep, li8_rep, li9_rep, li10_rep, li11_rep = [], \
@@ -43,7 +60,7 @@ def func2():
     global flower3, flower4, new_dict
 
     new_dict = flower3
-    # 找到flower 中的key直
+    # 找到flower 中的key值
     li0, li0_rep = ['♣(0):'], ['♣(0):']
     li1, li1_rep = ['♦(1):'], ['♦(1):']
     li2, li2_rep = ['❤(2):'], ['❤(2):']
@@ -87,11 +104,15 @@ def init(update, context): #開始執行初始化
         context.bot.send_message(chat_id=update.effective_chat.id, text=f'{li12[i]}\n')
 
 def Move(update, context):
+    '''
+        移動牌堆
+    '''
     global li0, li1, li2, li3, li4, li5, li6, li7, li8, li9, li10, li11, li12, li13, flower3, flower4, new_dict
+    # 輸入move(pos1, pos2, end)值
     pos = update.message.text
     pos_temp = pos.split(',')
     pos1, pos2, end = int(pos_temp[0]), int(pos_temp[1]), int(pos_temp[2])
-    # 輸入move(pos1, pos2, end)值
+
     extract = []
     extract_actul = []
     loc = 0
@@ -144,6 +165,9 @@ def Move(update, context):
         context.bot.send_message(chat_id=update.effective_chat.id, text='Congratulation you are the King of the world')
 
 def Pause(update, context):
+    '''
+        暫停，選擇按鈕
+    '''
     context.bot.send_message(
         chat_id=update.effective_chat.id, text='PAUSE', reply_markup=InlineKeyboardMarkup([
             [InlineKeyboardButton('Retry??', callback_data='r')],
@@ -152,6 +176,12 @@ def Pause(update, context):
         ]))
 
 def func(update, context):
+    '''
+        按鈕對應功能
+        1.遊戲重新
+        2.遊戲繼續
+        3.在row4發一張牌
+    '''
     global li0, li1, li2, li3, li4, li5, li6, li7, li8, li9, li10, li11, li12, li13, flower3, flower4, new_dict, li4_rep
     if update.callback_query.data == 'r':
         func1()
