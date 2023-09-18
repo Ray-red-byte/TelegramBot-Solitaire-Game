@@ -7,7 +7,7 @@
      ![image](https://github.com/Ray-red-byte/TelegramBot-Solitaire-Game/assets/72739609/c7b9f177-daeb-4a0c-a22b-775cc9b93527)
 
 
-  3. Show the button : Deal / Retry / Continue
+  3. Show the button : Deal / Retry / Continue</br>
      ![image](https://github.com/Ray-red-byte/TelegramBot-Solitaire-Game/assets/72739609/fb867832-503d-42de-8505-4644293adb91)
 
      
